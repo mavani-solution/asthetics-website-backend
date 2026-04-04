@@ -1,0 +1,272 @@
+{
+  "conference": {
+    "short_name": "FACCON",
+    "full_name": "Facial Aesthetics and Cosmetology Conference",
+    "description": "FACCON is a premier platform dedicated to advancing the science and artistry of facial aesthetics. Designed for medical professionals passionate about aesthetic medicine, FACCON brings together leading experts, innovators, and practitioners to exchange knowledge, showcase clinical excellence, and explore the latest advancements in aesthetic procedures.",
+    "hosted_by": "Aesthetic Institute of India",
+    "about": "FACCON serves as a hub for cutting-edge learning, live demonstrations, and high-impact networking within the global aesthetic community.",
+    "vision": "FACCON aims to elevate the standards of aesthetic medicine by fostering education, innovation, and collaboration among aesthetic practitioners. Our goal is to create a global platform where doctors can refine their skills, learn advanced techniques, and stay ahead in the rapidly evolving field of facial aesthetics."
+  },
+  "hero": {
+    "edition": "FACCON 2026",
+    "headline": "2nd Edition Global Aesthetics Summit",
+    "tagline": "Join the most elite gathering of aestheticians, dental professionals, and industry pioneers. Unlock cutting-edge insights, master advanced techniques, and grow your network—all in one transformative event.",
+    "venue_display": "Delhi, India",
+    "venue_detail": "Radisson Blu Paschim Vihar",
+    "follow_cta": "Follow us on Instagram for speaker drops & schedules."
+  },
+  "stats": {
+    "attendees": "1000+",
+    "speakers": "30+",
+    "brands": "25+",
+    "cde_points": "12 CDE Points"
+  },
+  "offerings": [
+    {
+      "title": "International Conferences",
+      "description": "Large-scale aesthetic conferences that bring together renowned national and international faculty to share insights into the latest aesthetic technologies, clinical techniques, and treatment protocols."
+    },
+    {
+      "title": "Clinical Workshops",
+      "description": "Hands-on workshops provide doctors with practical training in advanced aesthetic procedures including injectables, facial contouring, laser therapies, and regenerative treatments."
+    },
+    {
+      "title": "Live Demonstrations",
+      "description": "Participants gain valuable exposure through live patient demonstrations conducted by expert practitioners, offering real-time learning and technique refinement."
+    },
+    {
+      "title": "Scientific Discussions",
+      "description": "Evidence-based panel discussions, case presentations, and interactive sessions focusing on safety, ethics, and innovation in aesthetic medicine."
+    },
+    {
+      "title": "Networking Opportunities",
+      "description": "An exceptional platform for doctors, aesthetic practitioners, and industry leaders to connect, collaborate, and build meaningful professional relationships."
+    },
+    {
+      "title": "FACCON Honours",
+      "description": "Prestigious awards recognizing outstanding contributions, innovation, and clinical mastery within the aesthetic community."
+    }
+  ],
+  "why_attend": [
+    "Learn from leading experts in aesthetic medicine",
+    "Experience advanced hands-on clinical training",
+    "Discover emerging technologies and techniques",
+    "Connect with top aesthetic professionals",
+    "Elevate your practice to international standards"
+  ],
+  "reference_benefits": [
+    "Exclusive insights from global industry leaders",
+    "Live demos from top aesthetics professionals",
+    "Network with 500+ professionals & leaders in the industry",
+    "Stay ahead with the latest trends & technologies",
+    "Showcase your work and gain industry recognition",
+    "Discover business strategies to scale your aesthetics practice"
+  ],
+  "audience": [
+    "Aestheticians & Beauty Experts",
+    "Dental Professionals & Students",
+    "Entrepreneurs in Aesthetics",
+    "Medical Health Professionals and Researchers",
+    "Trade Industry Experts",
+    "Researchers & Innovators"
+  ],
+  "event_2026": {
+    "title": "FACCON 2026",
+    "description": "FACCON continues to grow as one of India’s most anticipated aesthetic conferences, bringing together doctors from across the country and beyond for two days of intensive learning, innovation, and celebration of excellence in facial aesthetics.",
+    "location": "Delhi, India",
+    "dates": [
+      "2026-05-29",
+      "2026-05-30",
+      "2026-05-31"
+    ]
+  },
+  "clinical_workshop_speakers": [
+    "Dr. Mridu Miglani",
+    "Dr. Pruthvi Vaity",
+    "Dr. Shipra Jaidka",
+    "Dr. Monica Kapoor",
+    "Dr. Deepti Jawa",
+    "Dr. Ravi Kant",
+    "Dr. Sumeet Shinde",
+    "Stefania Vanara",
+    "Dr. Islam Kaseem"
+  ],
+  "workshops": [
+    {
+      "date": "2026-05-31",
+      "title": "Clinical Workshops",
+      "sessions": [
+        {
+          "name": "The Lip Alchemy Workshop",
+          "fee_inr": 14999
+        },
+        {
+          "name": "Botox",
+          "fee_inr": 9999
+        },
+        {
+          "name": "IV Drips",
+          "fee_inr": 9999
+        },
+        {
+          "name": "Facial Lasers",
+          "fee_inr": 9999
+        },
+        {
+          "name": "Smart Aesthetics: Redefining Beauty with AI",
+          "fee_inr": 9999
+        }
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "sessions": [
+        {
+          "name": "Liquid Gold: Precision Fat Transfer Techniques",
+          "fee_usd": 900,
+          "description": "Elevate your clinical expertise by learning a procedure that blends artistry with surgical precision—delivering natural, elegant, and sustainable results."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "fee_inr_each": 14999,
+      "sessions": [
+        {
+          "name": "The Gaze Redefined",
+          "description": "Unlock the science behind brighter, younger-looking eyes—an exclusive deep dive into modern blepharoplasty."
+        },
+        {
+          "name": "Facial Accents: Science of Surgical Dimples",
+          "description": "Sculpted smiles—an artistic approach to precision dimple creation."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "fee_inr_each": 5999,
+      "sessions": [
+        {
+          "name": "Clinical Composure: Safe Sedation Strategies"
+        },
+        {
+          "name": "Precision Under Pressure: BLS for Injectors"
+        }
+      ]
+    }
+  ],
+  "speakers": [
+    {
+      "name": "Dr. Mridu Miglani",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Pruthvi Vaity",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Jaskaran Tripathi",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Islam Kaseem",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Sumeet Shinde",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Stefania Vanara",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Nikita Dhawan",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Manjusha Khurana",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Shipra Jaidka",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Deepti Jawa",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Ravi Kant",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Sapna Wadhera",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Monica Kapoor",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Sanyam Khurana",
+      "image": "/uploads/dr-miglani.jpg"
+    },
+    {
+      "name": "Dr. Komal Mehta",
+      "image": "/uploads/dr-miglani.jpg"
+    }
+  ],
+  "schedule_days": [
+    {
+      "label": "Conference highlights",
+      "items": [
+        "Registration & High Tea, Deep Prajwalan followed by Saraswati Vandana",
+        "Welcome Address by Dr. Mridu Miglani",
+        "Smooth Solutions – Overcoming Challenges in Laser Hair Reduction",
+        "Mastering Lip Fillers: Techniques, Trends, and Troubleshooting Complications",
+        "NAD+ Reverse Your Age — anti-aging science",
+        "Lunch",
+        "Gene Biohacking Therapy for Hair",
+        "Melasma Management: Tailored Treatment Strategies",
+        "Beyond the Clinic: Wealth Strategies",
+        "Case Presentations and High Tea",
+        "Gala Dinner"
+      ]
+    },
+    {
+      "label": "Day two",
+      "items": [
+        "High Tea",
+        "Restoring Facial Harmony: Minor Surgical Procedures",
+        "Paramedical Micropigmentation in Vitiligo, Stretchmarks, and Scars",
+        "Advanced Rejuvenation Techniques for a Youthful Neck — live demonstration",
+        "Lunch",
+        "Empowering Aestheticians with Artificial Intelligence — interactive session",
+        "Case Presentations",
+        "Medical & Procedural Treatment in Trichology",
+        "Panel Discussion",
+        "Awards Ceremony and High Tea"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Will I receive certification?",
+      "a": "Yes. You will be certified after completing this summit, subject to attendance criteria shared at registration."
+    },
+    {
+      "q": "Who should attend?",
+      "a": "Doctors, aestheticians, dental professionals, researchers, and industry partners looking to advance in facial aesthetics."
+    }
+  ],
+  "social_proof": {
+    "headline": "You are not the first to attend FACCON",
+    "body": "1000+ people across the globe have experienced FACCON and transformed their career & business."
+  },
+  "registration": {
+    "headline": "To Join Now",
+    "note": "Registration closing soon — limited seats.",
+    "submit_label": "Proceed"
+  }
+}
