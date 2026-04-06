@@ -34,9 +34,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Routes
-app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/conference-data', require('./src/routes/conferenceDataRoutes'));
 app.use('/api/courses', require('./src/routes/courseRoutes'));
+app.use('/api/admin', require('./src/routes/adminRoutes'));
+app.use('/api/upload', require('./src/routes/uploadRoutes'));
+app.use('/api/testimonials', require('./src/routes/testimonialRoutes'));
+app.use('/api/blogs', require('./src/routes/blogRoutes'));
 
 // Basic status route
 app.get('/status', (req, res) => {

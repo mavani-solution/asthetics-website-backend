@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { protect } = require('../middleware/auth');
 const {
     getConferenceData,
     updateConferenceData,
@@ -8,8 +9,8 @@ const {
 } = require('../controllers/conferenceDataController');
 
 router.get('/', getConferenceData);
-router.post('/', createConferenceData);
-router.put('/', updateConferenceData);
-router.post('/seed', seedConferenceData);
+router.post('/', protect, createConferenceData);
+router.put('/', protect, updateConferenceData);
+router.post('/seed', protect, seedConferenceData);
 
 module.exports = router;

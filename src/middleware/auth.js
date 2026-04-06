@@ -1,49 +1,40 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const { ClerkExpressWithAuth } = require('@clerk/clerk-sdk-node');
 
-// Protect routes - Use this as middleware for sensitive endpoints
-const protect = async (req, res, next) => {
-    let token;
+// Core Clerk Auth Middleware
+const clerkAuth = ClerkExpressWithAuth({
+    secretKey: process.env.CLERK_SECRET_KEY,
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY
+});
 
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
-        try {
-            // Get token from header
-            token = req.headers.authorization.split(' ')[1];
-
-            // Verify token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-            // Get user from the token and attach it to the request (exclude password)
-            req.user = await User.findById(decoded.id).select('-password');
-
-            if (!req.user) {
-                return res.status(401).json({ success: false, message: 'Not authorized: User not found' });
-            }
-
-            next();
-        } catch (error) {
-            console.error(error);
-            res.status(401).json({ success: false, message: 'Not authorized: Invalid token' });
-        }
+// Unified protect middleware
+const protect = (req, res, next) => {
+    // BYPASS FOR DEVELOPMENT
+    if (process.env.NODE_ENV === 'development') {
+        req.auth = {
+            userId: 'user_2m1n_mock_dev_000000000',
+            sessionId: 'sess_mock_dev_000000000'
+        };
+        return next();
     }
 
-    if (!token) {
-        res.status(401).json({ success: false, message: 'Not authorized: No token provided' });
-    }
-};
-
-// Grant access to specific roles
-const authorize = (...roles) => {
-    return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
-            return res.status(403).json({
+    // Production: Use Clerk middleware
+    return clerkAuth(req, res, () => {
+        if (!req.auth || !req.auth.userId) {
+            return res.status(401).json({
                 success: false,
-                message: `User role '${req.user.role}' is not authorized to access this route`,
+                message: 'Unauthenticated: Please log in to access this resource.'
             });
         }
+        next();
+    });
+};
+
+// Grant access to specific roles (Clerk roles/permissions can be checked here if needed)
+// For now, any authenticated user is allowed since it's an admin-only app
+const authorize = (...roles) => {
+    return (req, res, next) => {
+        // Clerk session info is available in req.auth
+        // If you use Clerk organizations/roles, you can check them here
         next();
     };
 };

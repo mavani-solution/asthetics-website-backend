@@ -8,17 +8,18 @@ const {
     seedCoursesData
 } = require('../controllers/courseController');
 
+const { protect } = require('../middleware/auth');
 const router = express.Router();
 
 router.route('/')
     .get(getCourses)
-    .post(createCourse);
+    .post(protect, createCourse);
 
-router.post('/seed', seedCoursesData);
+router.post('/seed', protect, seedCoursesData);
 
 router.route('/:id')
     .get(getCourse)
-    .put(updateCourse)
-    .delete(deleteCourse);
+    .put(protect, updateCourse)
+    .delete(protect, deleteCourse);
 
 module.exports = router;
