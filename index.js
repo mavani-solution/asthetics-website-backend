@@ -45,6 +45,8 @@ app.use('/api/admin', require('./src/routes/adminRoutes'));
 app.use('/api/upload', require('./src/routes/uploadRoutes'));
 app.use('/api/testimonials', require('./src/routes/testimonialRoutes'));
 app.use('/api/blogs', require('./src/routes/blogRoutes'));
+app.use('/api/hero', require('./src/routes/heroRoutes'));
+app.use('/api/inquiries', require('./src/routes/inquiryRoutes'));
 
 // Basic status route
 app.get('/status', (req, res) => {
