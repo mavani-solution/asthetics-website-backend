@@ -19,7 +19,12 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+    origin: '*', // For development, update this to your frontend URL in production for better security
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 
 // Security Headers
 // NOTE: helmet might restrict image rendering from same origin if not configured perfectly, specially cross-origin header, but standard helmet is usually fine for GET requests. For static assets we cross origin config later if need.

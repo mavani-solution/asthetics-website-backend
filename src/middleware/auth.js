@@ -18,13 +18,25 @@ const protect = (req, res, next) => {
     }
 
     // Production: Use Clerk middleware
-    return clerkAuth(req, res, () => {
+    // We wrap clerkAuth to handle potential errors and ensure req.auth is checked
+    return clerkAuth(req, res, (err) => {
+        if (err) {
+            console.error('Clerk Auth Error:', err);
+            return res.status(401).json({
+                success: false,
+                message: 'Authentication failed: ' + err.message
+            });
+        }
+
         if (!req.auth || !req.auth.userId) {
+            console.warn('Unauthorized access attempt: No user authentication found.');
             return res.status(401).json({
                 success: false,
                 message: 'Unauthenticated: Please log in to access this resource.'
             });
         }
+        
+        console.log(`Authenticated user: ${req.auth.userId}`);
         next();
     });
 };
