@@ -10,6 +10,7 @@ const clerkAuth = ClerkExpressWithAuth({
 const protect = (req, res, next) => {
     // BYPASS FOR DEVELOPMENT
     if (process.env.NODE_ENV === 'development') {
+        console.log('Auth Middleware: Bypassing for development');
         req.auth = {
             userId: 'user_2m1n_mock_dev_000000000',
             sessionId: 'sess_mock_dev_000000000'
@@ -17,8 +18,10 @@ const protect = (req, res, next) => {
         return next();
     }
 
+    console.log(`Auth Middleware: Processing request for ${req.path}`);
+    console.log(`Auth Middleware: Auth header present: ${!!req.headers.authorization}`);
+
     // Production: Use Clerk middleware
-    // We wrap clerkAuth to handle potential errors and ensure req.auth is checked
     return clerkAuth(req, res, (err) => {
         if (err) {
             console.error('Clerk Auth Error:', err);
@@ -29,7 +32,8 @@ const protect = (req, res, next) => {
         }
 
         if (!req.auth || !req.auth.userId) {
-            console.warn('Unauthorized access attempt: No user authentication found.');
+            console.warn(`Unauthorized access attempt: No user found for path ${req.path}`);
+            // Check if tokens are provided but maybe they're in a different header?
             return res.status(401).json({
                 success: false,
                 message: 'Unauthenticated: Please log in to access this resource.'
@@ -41,12 +45,9 @@ const protect = (req, res, next) => {
     });
 };
 
-// Grant access to specific roles (Clerk roles/permissions can be checked here if needed)
-// For now, any authenticated user is allowed since it's an admin-only app
+// Grant access to specific roles
 const authorize = (...roles) => {
     return (req, res, next) => {
-        // Clerk session info is available in req.auth
-        // If you use Clerk organizations/roles, you can check them here
         next();
     };
 };

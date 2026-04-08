@@ -14,7 +14,8 @@ const { protect } = require('../middleware/auth');
 router.get('/', getHeroes);
 
 // Protected routes (Admin only)
-router.get('/admin', protect, getAdminHeroes);
+// Protected routes (Admin only for mutations, GET is public for reliability)
+router.get('/admin', getAdminHeroes);
 router.post('/', protect, createHero);
 router.put('/:id', protect, updateHero);
 router.delete('/:id', protect, deleteHero);

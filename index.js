@@ -20,14 +20,13 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors({
-    origin: '*', // For development, update this to your frontend URL in production for better security
+    origin: true, // Echoes back the request origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     credentials: true
 }));
 
 // Security Headers
-// NOTE: helmet might restrict image rendering from same origin if not configured perfectly, specially cross-origin header, but standard helmet is usually fine for GET requests. For static assets we cross origin config later if need.
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
 // Serve static files (images)
@@ -50,7 +49,12 @@ app.use('/api/inquiries', require('./src/routes/inquiryRoutes'));
 
 // Basic status route
 app.get('/status', (req, res) => {
-    res.json({ success: true, message: 'Server is running' });
+    res.json({
+        success: true,
+        message: 'Server is running',
+        env: process.env.NODE_ENV,
+        clerkConfigured: !!process.env.CLERK_SECRET_KEY
+    });
 });
 
 // Root route
@@ -65,4 +69,6 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+    console.log(`Clerk Publishable Key set: ${!!process.env.CLERK_PUBLISHABLE_KEY}`);
+    console.log(`Clerk Secret Key set: ${!!process.env.CLERK_SECRET_KEY}`);
 });
