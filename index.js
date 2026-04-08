@@ -21,7 +21,7 @@ app.use(express.json());
 // Enable CORS
 app.use(cors({
     origin: true, // Echoes back the request origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     credentials: true
 }));
