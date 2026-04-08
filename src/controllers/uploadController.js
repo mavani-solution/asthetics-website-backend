@@ -1,37 +1,37 @@
 const multer = require('multer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const dotenv = require('dotenv');
 
-// Storage configuration
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/');
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
+dotenv.config();
+
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// File filter
-const fileFilter = (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|jfif|png|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-
-    if (extname && mimetype) {
-        return cb(null, true);
-    } else {
-        cb(new Error('Only images (jpg, jpeg, jfif, png, webp) are allowed!'));
-    }
-};
+// Configure Cloudinary Storage for Multer
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'aesthetic-india-uploads',
+        resource_type: 'auto', // Automatically detect if it's an image or video
+        public_id: (req, file) => {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+            return file.fieldname + '-' + uniqueSuffix;
+        },
+    },
+});
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
-    fileFilter: fileFilter
+    limits: { fileSize: 50 * 1024 * 1024 }, // Increased to 50MB for video support
 });
 
-// @desc    Upload single image
+// @desc    Upload single image to Cloudinary
 // @route   POST /api/upload
 // @access  Private
 const uploadImage = (req, res) => {
@@ -39,13 +39,10 @@ const uploadImage = (req, res) => {
         return res.status(400).json({ success: false, message: 'Please upload a file' });
     }
 
-    // Construct the file path relative to public/
-    // Example: /uploads/image-123.jpg
-    const filePath = `/uploads/${req.file.filename}`;
-
+    // Cloudinary returns the full secure URL in req.file.path
     res.status(201).json({
         success: true,
-        data: filePath
+        data: req.file.path // This will be the full HTTPS URL
     });
 };
 
