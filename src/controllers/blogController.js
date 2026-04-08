@@ -14,10 +14,24 @@ const getBlogs = async (req, res) => {
     }
 };
 
-// @desc    Get single blog by slug
-// @route   GET /api/blogs/:slug
-// @access  Public
 const getBlogBySlug = async (req, res) => {
+    try {
+        const blog = await Blog.findOne({ slug: req.params.slug });
+
+        if (!blog) {
+            return res.status(404).json({ success: false, message: 'Blog not found' });
+        }
+
+        res.status(200).json({ success: true, data: blog });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// @desc    Increment blog view count
+// @route   PATCH /api/blogs/:slug/view
+// @access  Public
+const incrementViews = async (req, res) => {
     try {
         const blog = await Blog.findOneAndUpdate(
             { slug: req.params.slug },
@@ -29,7 +43,7 @@ const getBlogBySlug = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Blog not found' });
         }
 
-        res.status(200).json({ success: true, data: blog });
+        res.status(200).json({ success: true, data: { views: blog.views } });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -87,6 +101,7 @@ const deleteBlog = async (req, res) => {
 module.exports = {
     getBlogs,
     getBlogBySlug,
+    incrementViews,
     createBlog,
     updateBlog,
     deleteBlog
