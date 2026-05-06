@@ -46,6 +46,7 @@ app.use('/api/testimonials', require('./src/routes/testimonialRoutes'));
 app.use('/api/blogs', require('./src/routes/blogRoutes'));
 app.use('/api/hero', require('./src/routes/heroRoutes'));
 app.use('/api/inquiries', require('./src/routes/inquiryRoutes'));
+app.use('/api/faccon-inquiries', require('./src/routes/facconInquiryRoutes'));
 
 // Basic status route
 app.get('/status', (req, res) => {
