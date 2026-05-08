@@ -6,7 +6,7 @@ const UserProfile = require('../models/UserProfile');
 // @access  Private
 const createTicket = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         const {
             eventName,
             eventDate,
@@ -70,7 +70,7 @@ const createTicket = async (req, res) => {
 // @access  Private
 const getMyTickets = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         const tickets = await Ticket.find({ userId }).sort({ createdAt: -1 });
 
         res.status(200).json({
@@ -90,7 +90,7 @@ const getTicketByCode = async (req, res) => {
     try {
         const ticket = await Ticket.findOne({
             ticketCode: req.params.ticketCode,
-            userId: req.auth.userId
+            userId: 'guest'
         });
 
         if (!ticket) {
@@ -124,7 +124,7 @@ const getAllTickets = async (req, res) => {
 // @access  Private
 const updateTicket = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         const { ticketCode } = req.params;
 
         const {

@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { getProfile, saveProfile, deleteProfile } = require('../controllers/userProfileController');
-const { protect } = require('../middleware/auth');
 
-// Get profile
-router.get('/profile', protect, getProfile);
+// Get profile (Public)
+router.get('/profile', getProfile);
 
-// Create or Update profile
-router.post('/profile', protect, saveProfile);
+// Create or Update profile (Public)
+router.post('/profile', saveProfile);
 
-// Delete profile
-router.delete('/profile', protect, deleteProfile);
+// Delete profile (Public)
+router.delete('/profile', deleteProfile);
 
 module.exports = router;

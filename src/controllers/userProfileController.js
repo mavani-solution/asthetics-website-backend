@@ -5,7 +5,7 @@ const UserProfile = require('../models/UserProfile');
 // @access  Private
 const getProfile = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         const profile = await UserProfile.findOne({ userId });
 
         if (!profile) {
@@ -23,7 +23,7 @@ const getProfile = async (req, res) => {
 // @access  Private
 const saveProfile = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         const {
             firstName,
             lastName,
@@ -84,7 +84,7 @@ const saveProfile = async (req, res) => {
 // @access  Private
 const deleteProfile = async (req, res) => {
     try {
-        const userId = req.auth.userId;
+        const userId = 'guest';
         await UserProfile.findOneAndDelete({ userId });
         res.status(200).json({ success: true, message: 'Profile deleted successfully' });
     } catch (error) {
