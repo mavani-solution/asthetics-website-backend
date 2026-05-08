@@ -62,7 +62,8 @@ const initiatePayment = async (req, res) => {
         res.status(200).json({
             success: true,
             data: response.data,
-            merchantTxnNo
+            merchantTxnNo,
+            paymentUrl: `${response.data.redirectURI}?tranCtx=${response.data.tranCtx}`
         });
 
     } catch (error) {
@@ -109,8 +110,11 @@ const handleCallback = async (req, res) => {
         payment.gatewayResponse = { ...payment.gatewayResponse, callback: responseData };
         await payment.save();
 
-        // 4. Return success to ICICI (they expect 200 OK)
-        res.status(200).send('OK');
+        // 4. Redirect the user's browser back to the Frontend React App
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+        const redirectUrl = `${frontendUrl}/payment-status?txn=${payment.merchantTxnNo}&status=${payment.status}`;
+        
+        res.redirect(redirectUrl);
 
     } catch (error) {
         console.error('Callback Error:', error.message);
