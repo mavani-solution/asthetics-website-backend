@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const paymentSchema = new mongoose.Schema({
     userId: {
-        type: String, // Storing Clerk User ID
-        required: true
+        type: String, // Storing Clerk User ID or 'guest'
+        required: false
     },
     merchantTxnNo: {
         type: String,

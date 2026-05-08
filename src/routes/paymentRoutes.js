@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { initiatePayment, handleCallback, getPaymentStatus } = require('../controllers/paymentController');
-const { protect } = require('../middleware/auth');
 
-// Initiate payment (Requires Login)
-router.post('/initiate', protect, initiatePayment);
+// Initiate payment (Public - Guest Checkout)
+router.post('/initiate', initiatePayment);
 
 // Payment Callback (Public - ICICI will call this)
 router.post('/callback', handleCallback);
 
-// Get Payment Status (Requires Login)
-router.get('/:merchantTxnNo', protect, getPaymentStatus);
+// Get Payment Status (Public)
+router.get('/:merchantTxnNo', getPaymentStatus);
 
 module.exports = router;

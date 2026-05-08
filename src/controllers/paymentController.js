@@ -8,7 +8,7 @@ const { formatTxnDate, generateRequestHash, verifyResponseHash } = require('../u
 const initiatePayment = async (req, res) => {
     try {
         const { amount, courseId, customerEmail, customerMobile } = req.body;
-        const userId = req.auth.userId; // From Clerk middleware
+        const userId = 'guest'; // App has no login feature, use guest
 
         if (!amount || !customerEmail || !customerMobile) {
             return res.status(400).json({ success: false, message: 'Amount, customerEmail, and customerMobile are required' });
@@ -124,8 +124,7 @@ const handleCallback = async (req, res) => {
 const getPaymentStatus = async (req, res) => {
     try {
         const payment = await Payment.findOne({
-            merchantTxnNo: req.params.merchantTxnNo,
-            userId: req.auth.userId
+            merchantTxnNo: req.params.merchantTxnNo
         });
 
         if (!payment) {
