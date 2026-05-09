@@ -50,6 +50,8 @@ app.use('/api/faccon-inquiries', require('./src/routes/facconInquiryRoutes'));
 app.use('/api/payment', require('./src/routes/paymentRoutes'));
 app.use('/api/user', require('./src/routes/userProfileRoutes'));
 app.use('/api/tickets', require('./src/routes/ticketRoutes'));
+app.use('/api/enrollments', require('./src/routes/enrollmentRoutes'));
+
 
 
 
