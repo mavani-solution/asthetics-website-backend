@@ -1,6 +1,7 @@
 const Course = require('../models/Course');
-const Registration = require('../models/Registration');
+const Inquiry = require('../models/Inquiry');
 const ConferenceData = require('../models/ConferenceData');
+const Payment = require('../models/Payment');
 
 // @desc    Get admin dashboard stats
 // @route   GET /api/admin/stats
@@ -8,11 +9,11 @@ const ConferenceData = require('../models/ConferenceData');
 const getAdminStats = async (req, res, next) => {
     try {
         const totalCourses = await Course.countDocuments();
-        const totalRegistrations = await Registration.countDocuments();
-
-        // Proxy for "Active Users" - Unique email registrations
-        const activeUsersList = await Registration.distinct('email');
-        const activeUsers = activeUsersList.length;
+        const totalInquiries = await Inquiry.countDocuments();
+        
+        // Actual Payments stats
+        const totalPayments = await Payment.countDocuments({ status: 'Success' });
+        const successPayments = await Payment.find({ status: 'Success' });
 
         // Date boundaries
         const now = new Date();
@@ -20,22 +21,18 @@ const getAdminStats = async (req, res, next) => {
         const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
         const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59);
 
-        // --- Calculate Estimated Revenue ---
-        const allRegistrations = await Registration.find().populate('courseId');
+        // --- Calculate Actual Revenue from Payments ---
         let totalRevenueVal = 0;
         let thisMonthRevenueVal = 0;
         let lastMonthRevenueVal = 0;
 
-        allRegistrations.forEach(reg => {
-            if (reg.courseId && reg.courseId.fee) {
-                const numericFee = parseFloat(reg.courseId.fee.replace(/[^\d.]/g, '')) || 0;
-                totalRevenueVal += numericFee;
-                
-                if (reg.createdAt >= startOfThisMonth) {
-                    thisMonthRevenueVal += numericFee;
-                } else if (reg.createdAt >= startOfLastMonth && reg.createdAt <= endOfLastMonth) {
-                    lastMonthRevenueVal += numericFee;
-                }
+        successPayments.forEach(pay => {
+            totalRevenueVal += pay.amount || 0;
+            
+            if (pay.createdAt >= startOfThisMonth) {
+                thisMonthRevenueVal += pay.amount || 0;
+            } else if (pay.createdAt >= startOfLastMonth && pay.createdAt <= endOfLastMonth) {
+                lastMonthRevenueVal += pay.amount || 0;
             }
         });
 
@@ -50,11 +47,11 @@ const getAdminStats = async (req, res, next) => {
         const coursesGrowth = lastMonthCourses === 0 ? `+${thisMonthCourses}` : 
             `${thisMonthCourses >= lastMonthCourses ? '+' : ''}${Math.round(((thisMonthCourses - lastMonthCourses) / lastMonthCourses) * 100)}%`;
 
-        // Registrations Growth
-        const thisMonthRegs = await Registration.countDocuments({ createdAt: { $gte: startOfThisMonth } });
-        const lastMonthRegs = await Registration.countDocuments({ createdAt: { $gte: startOfLastMonth, $lte: endOfLastMonth } });
-        const registrationsGrowth = lastMonthRegs === 0 ? `+${thisMonthRegs}` : 
-            `${thisMonthRegs >= lastMonthRegs ? '+' : ''}${Math.round(((thisMonthRegs - lastMonthRegs) / lastMonthRegs) * 100)}%`;
+        // Inquiries Growth
+        const thisMonthInqs = await Inquiry.countDocuments({ createdAt: { $gte: startOfThisMonth } });
+        const lastMonthInqs = await Inquiry.countDocuments({ createdAt: { $gte: startOfLastMonth, $lte: endOfLastMonth } });
+        const inquiriesGrowth = lastMonthInqs === 0 ? `+${thisMonthInqs}` : 
+            `${thisMonthInqs >= lastMonthInqs ? '+' : ''}${Math.round(((thisMonthInqs - lastMonthInqs) / lastMonthInqs) * 100)}%`;
 
         // --- Calculate Last 6 Months Trends ---
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -65,13 +62,15 @@ const getAdminStats = async (req, res, next) => {
             const mStart = new Date(now.getFullYear(), now.getMonth() - i, 1);
             const mEnd = new Date(now.getFullYear(), now.getMonth() - i + 1, 0, 23, 59, 59);
 
-            const mRegs = await Registration.countDocuments({ createdAt: { $gte: mStart, $lte: mEnd } });
+            const mInqs = await Inquiry.countDocuments({ createdAt: { $gte: mStart, $lte: mEnd } });
             const mCourses = await Course.countDocuments({ createdAt: { $gte: mStart, $lte: mEnd } });
+            const mPayments = await Payment.countDocuments({ status: 'Success', createdAt: { $gte: mStart, $lte: mEnd } });
             
             monthlyData.push({
                 month: monthNames[date.getMonth()],
-                registrations: mRegs,
-                courses: mCourses
+                inquiries: mInqs,
+                courses: mCourses,
+                payments: mPayments
             });
         }
 
@@ -79,11 +78,11 @@ const getAdminStats = async (req, res, next) => {
             success: true,
             data: {
                 totalCourses,
-                totalRegistrations,
-                activeUsers,
+                totalInquiries,
+                totalPayments,
                 estimatedRevenue,
                 revenueGrowth,
-                registrationsGrowth,
+                inquiriesGrowth,
                 coursesGrowth,
                 monthlyData
             }
@@ -93,20 +92,20 @@ const getAdminStats = async (req, res, next) => {
     }
 };
 
-// @desc    Get all registrations
+// @desc    Get all inquiries (alias for registrations in dashboard)
 // @route   GET /api/admin/registrations
 // @access  Private
 const getRegistrations = async (req, res, next) => {
     try {
-        const registrations = await Registration.find().populate({
-            path: 'courseId',
+        const inquiries = await Inquiry.find().populate({
+            path: 'courseInterest',
             select: 'title'
         }).sort('-createdAt');
 
         res.status(200).json({
             success: true,
-            count: registrations.length,
-            data: registrations
+            count: inquiries.length,
+            data: inquiries
         });
     } catch (error) {
         next(error);

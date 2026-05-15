@@ -20,8 +20,26 @@ const paymentSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Initiated', 'Success', 'Failed', 'Cancelled'],
+        enum: ['Initiated', 'Success', 'Failed', 'Cancelled', 'Pending_Cash'],
         default: 'Initiated'
+    },
+    paymentMethod: {
+        type: String,
+        enum: ['Online', 'COD'],
+        default: 'Online'
+    },
+    customerDetails: {
+        name: String,
+        email: String,
+        phone: String,
+        companyName: String,
+        country: String,
+        state: String,
+        addressLine1: String,
+        addressLine2: String,
+        city: String,
+        pinCode: String,
+        orderNotes: String
     },
     payType: {
         type: String, // '0' for Redirection, '1' for Seamless
@@ -31,13 +49,17 @@ const paymentSchema = new mongoose.Schema({
         type: Object,
         default: {}
     },
+    verificationNote: {
+        type: String,
+        required: false
+    },
     courseId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },
     txnDate: {
         type: String,
-        required: true
+        required: false
     }
 }, {
     timestamps: true

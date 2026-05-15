@@ -7,11 +7,11 @@ const { formatTxnDate, generateRequestHash, verifyResponseHash } = require('../u
 // @access  Private
 const initiatePayment = async (req, res) => {
     try {
-        const { amount, courseId, customerEmail, customerMobile } = req.body;
-        const userId = 'guest'; // App has no login feature, use guest
+        const { amount, courseId, customerName, customerEmail, customerMobile } = req.body;
+        const userId = 'guest'; 
 
         if (!amount || !customerEmail || !customerMobile) {
-            return res.status(400).json({ success: false, message: 'Amount, customerEmail, and customerMobile are required' });
+            return res.status(400).json({ success: false, message: 'Amount, email, and mobile are required' });
         }
 
         // 1. Generate Unique Transaction ID
@@ -45,7 +45,13 @@ const initiatePayment = async (req, res) => {
             amount,
             courseId,
             txnDate,
-            status: 'Initiated'
+            status: 'Initiated',
+            paymentMethod: 'Online',
+            customerDetails: {
+                name: customerName,
+                email: customerEmail,
+                phone: customerMobile
+            }
         });
 
         console.log('Sending request to ICICI:', iciciData);
@@ -81,55 +87,64 @@ const initiatePayment = async (req, res) => {
 // @access  Public
 const handleCallback = async (req, res) => {
     try {
-        const responseData = req.body;
+        // Data can come in body (POST) or query (GET)
+        const responseData = { ...req.query, ...req.body };
         console.log('Received Callback from ICICI:', responseData);
+
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+        // If no transaction data is present, the user likely navigated here directly or clicked 'back' without data
+        if (!responseData || !responseData.merchantTxnNo) {
+            console.warn('Empty or invalid callback received');
+            return res.redirect(`${frontendUrl}/payment-status?status=Cancelled`);
+        }
 
         // 1. Verify Hash
         const isHashValid = verifyResponseHash(responseData, process.env.ICICI_SECRET_KEY);
-
-        // Note: During initial integration, you might want to log if hash fails but proceed with status check
+        
         if (!isHashValid) {
             console.warn('Invalid Secure Hash in Callback!');
-            // return res.status(400).json({ success: false, message: 'Invalid hash' });
         }
 
         // 2. Find Payment Record
         const payment = await Payment.findOne({ merchantTxnNo: responseData.merchantTxnNo });
         if (!payment) {
-            return res.status(404).json({ success: false, message: 'Payment record not found' });
+            console.error('Payment record not found for txn:', responseData.merchantTxnNo);
+            return res.redirect(`${frontendUrl}/payment-status?status=Error&message=TransactionNotFound`);
         }
 
         // 3. Update Status
-        // responseCode '0' or '00' typically means success in ICICI
         if (responseData.responseCode === '0' || responseData.responseCode === '00') {
             payment.status = 'Success';
         } else {
+            // Handle different failure codes (like 'E000' for user cancel)
             payment.status = 'Failed';
+            console.log(`Payment failed with code: ${responseData.responseCode}`);
         }
 
         payment.gatewayResponse = { ...payment.gatewayResponse, callback: responseData };
         await payment.save();
 
-        // 4. Redirect the user's browser back to the Frontend React App
-        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+        // 4. Redirect back to frontend
         const redirectUrl = `${frontendUrl}/payment-status?txn=${payment.merchantTxnNo}&status=${payment.status}`;
-        
         res.redirect(redirectUrl);
 
     } catch (error) {
         console.error('Callback Error:', error.message);
-        res.status(500).json({ success: false, message: error.message });
+        // Avoid sending JSON error to user's browser, redirect instead if possible
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+        res.redirect(`${frontendUrl}/payment-status?status=Error&message=${encodeURIComponent(error.message)}`);
     }
 };
 
 // @desc    Get payment status
 // @route   GET /api/payment/:merchantTxnNo
-// @access  Private
+// @access  Public
 const getPaymentStatus = async (req, res) => {
     try {
         const payment = await Payment.findOne({
             merchantTxnNo: req.params.merchantTxnNo
-        });
+        }).populate('courseId', 'title category description');
 
         if (!payment) {
             return res.status(404).json({ success: false, message: 'Payment not found' });
@@ -141,8 +156,105 @@ const getPaymentStatus = async (req, res) => {
     }
 };
 
+// @desc    Get all payments (Admin)
+// @route   GET /api/payment
+// @access  Private/Admin
+const getAllPayments = async (req, res) => {
+    try {
+        const { status, page = 1, limit = 10, search } = req.query;
+        
+        const query = {};
+        
+        if (status && status !== 'All') {
+            query.status = status;
+        }
+
+        if (search) {
+            query.$or = [
+                { merchantTxnNo: { $regex: search, $options: 'i' } },
+                { userId: { $regex: search, $options: 'i' } }
+            ];
+        }
+
+        const skip = (parseInt(page) - 1) * parseInt(limit);
+        
+        const payments = await Payment.find(query)
+            .populate('courseId', 'title category')
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(parseInt(limit));
+
+        const total = await Payment.countDocuments(query);
+
+        res.status(200).json({
+            success: true,
+            count: payments.length,
+            total,
+            pages: Math.ceil(total / limit),
+            currentPage: parseInt(page),
+            data: payments
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// @desc    Update Payment Status (Admin Only)
+// @route   PATCH /api/payment/:id/status
+// @access  Private/Admin
+const updatePaymentStatus = async (req, res) => {
+    try {
+        const { status, verificationNote } = req.body;
+        const payment = await Payment.findById(req.params.id);
+
+        if (!payment) {
+            return res.status(404).json({ success: false, message: 'Payment not found' });
+        }
+
+        payment.status = status;
+        if (verificationNote) {
+            payment.verificationNote = verificationNote;
+        }
+        
+        await payment.save();
+
+        res.status(200).json({
+            success: true,
+            message: `Payment status updated to ${status}`,
+            data: payment
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// @desc    Delete Payment (Admin Only)
+// @route   DELETE /api/payment/:id
+// @access  Private/Admin
+const deletePayment = async (req, res) => {
+    try {
+        const payment = await Payment.findById(req.params.id);
+
+        if (!payment) {
+            return res.status(404).json({ success: false, message: 'Payment not found' });
+        }
+
+        await payment.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            message: 'Payment deleted successfully'
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
 module.exports = {
     initiatePayment,
     handleCallback,
-    getPaymentStatus
+    getPaymentStatus,
+    getAllPayments,
+    updatePaymentStatus,
+    deletePayment
 };

@@ -61,6 +61,11 @@ const generateRequestHash = (data, secretKey) => {
  * @returns {boolean}
  */
 const verifyResponseHash = (responseBody, secretKey) => {
+    if (!responseBody || typeof responseBody !== 'object') {
+        console.warn('Invalid responseBody provided for hash verification');
+        return false;
+    }
+
     const receivedHash = responseBody.secureHash;
     if (!receivedHash) {
         console.warn('No secureHash in callback response');
