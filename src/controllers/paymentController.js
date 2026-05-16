@@ -8,17 +8,46 @@ const { formatTxnDate, generateRequestHash, verifyResponseHash } = require('../u
 const initiatePayment = async (req, res) => {
     try {
         const { amount, courseId, customerName, customerEmail, customerMobile } = req.body;
-        const userId = 'guest'; 
+        const userId = 'guest';
 
         if (!amount || !customerEmail || !customerMobile) {
             return res.status(400).json({ success: false, message: 'Amount, email, and mobile are required' });
         }
 
-        // 1. Generate Unique Transaction ID
+        // 1. Prevent Duplicate Initiation (Idempotency Check)
+        // Check if there's an initiated payment for the same user/course/amount in the last 10 seconds
+        const existingPayment = await Payment.findOne({
+            'customerDetails.email': customerEmail,
+            courseId: courseId,
+            amount: Number(amount),
+            status: 'Initiated',
+            createdAt: { $gte: new Date(Date.now() - 10000) } // 10 second window
+        });
+
+        if (existingPayment) {
+            console.log(`Duplicate payment initiation detected for ${customerEmail}.`);
+            // If the gateway response is already there, return it instead of creating a new one
+            if (existingPayment.gatewayResponse && existingPayment.gatewayResponse.redirectURI) {
+                return res.status(200).json({
+                    success: true,
+                    data: existingPayment.gatewayResponse,
+                    merchantTxnNo: existingPayment.merchantTxnNo,
+                    paymentUrl: `${existingPayment.gatewayResponse.redirectURI}?tranCtx=${existingPayment.gatewayResponse.tranCtx}`,
+                    message: 'Restored existing payment session'
+                });
+            }
+            // If it's still being processed by the first request, return an error to prevent a second entry
+            return res.status(429).json({
+                success: false,
+                message: 'A payment request is already in progress. Please wait a few seconds.'
+            });
+        }
+
+        // 2. Generate Unique Transaction ID
         const merchantTxnNo = `TXN${Date.now()}${Math.floor(Math.random() * 1000)}`;
         const txnDate = formatTxnDate();
 
-        // 2. Prepare Data for ICICI - Complete Final Payload (Non-Seamless)
+        // 3. Prepare Data for ICICI - Complete Final Payload (Non-Seamless)
         // Omitting payType and paymentMode defaults to ICICI's hosted checkout page,
         // which natively supports UPI, CARD, and NetBanking without missing field errors.
         const iciciData = {
@@ -34,11 +63,11 @@ const initiatePayment = async (req, res) => {
             customerMobileNo: customerMobile
         };
 
-        // 3. Generate Hash
+        // 4. Generate Hash
         const secureHash = generateRequestHash(iciciData, process.env.ICICI_SECRET_KEY);
         iciciData.secureHash = secureHash;
 
-        // 4. Create Payment Record in Database
+        // 5. Create Payment Record in Database
         const payment = await Payment.create({
             userId,
             merchantTxnNo,
@@ -56,12 +85,12 @@ const initiatePayment = async (req, res) => {
 
         console.log('Sending request to ICICI:', iciciData);
 
-        // 5. Call ICICI Initiate Sale API
+        // 6. Call ICICI Initiate Sale API
         const response = await axios.post(process.env.ICICI_INITIATE_URL, iciciData, {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        // 6. Update payment record with gateway response
+        // 7. Update payment record with gateway response
         payment.gatewayResponse = response.data;
         await payment.save();
 
@@ -101,7 +130,7 @@ const handleCallback = async (req, res) => {
 
         // 1. Verify Hash
         const isHashValid = verifyResponseHash(responseData, process.env.ICICI_SECRET_KEY);
-        
+
         if (!isHashValid) {
             console.warn('Invalid Secure Hash in Callback!');
         }
@@ -162,9 +191,9 @@ const getPaymentStatus = async (req, res) => {
 const getAllPayments = async (req, res) => {
     try {
         const { status, page = 1, limit = 10, search } = req.query;
-        
+
         const query = {};
-        
+
         if (status && status !== 'All') {
             query.status = status;
         }
@@ -177,7 +206,7 @@ const getAllPayments = async (req, res) => {
         }
 
         const skip = (parseInt(page) - 1) * parseInt(limit);
-        
+
         const payments = await Payment.find(query)
             .populate('courseId', 'title category')
             .sort({ createdAt: -1 })
@@ -215,7 +244,7 @@ const updatePaymentStatus = async (req, res) => {
         if (verificationNote) {
             payment.verificationNote = verificationNote;
         }
-        
+
         await payment.save();
 
         res.status(200).json({
