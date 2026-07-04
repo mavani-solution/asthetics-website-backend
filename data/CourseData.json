@@ -1,56 +1,966 @@
 [
   {
+    "title": "ONLINE CERTIFICATE COURSE IN COSMETOLOGY",
+    "duration": "3 Months",
+    "mode": "Online",
+    "fee": "₹20,000 + Taxes",
+    "eligibleShort": "MBBS / BDS / AYUSH / Beginners",
+    "whoCanApply": "MBBS / BDS Doctors, AYUSH Doctors, Beginners entering aesthetic practice",
+    "cardImage": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+    "curriculumTopics": [
+      {
+        "title": "Basic Skin & Hair Science",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Skin anatomy and physiology",
+          "Skin types and analysis",
+          "Hair anatomy and physiology",
+          "Hair growth cycle",
+          "Common skin and hair disorders"
+        ]
+      },
+      {
+        "title": "Aesthetic Skin Science",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Acne: types, grading, management",
+          "Pigmentation disorders",
+          "Melasma",
+          "Dark circles",
+          "Sensitive skin"
+        ]
+      },
+      {
+        "title": "Chemical Peels",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Types of peels",
+          "Indications and contraindications",
+          "Pre and post care",
+          "Protocols"
+        ]
+      },
+      {
+        "title": "PRP & GFC",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Basics of PRP",
+          "GFC preparation",
+          "Indications",
+          "Protocols"
+        ]
+      },
+      {
+        "title": "Basic Aesthetic Procedures",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Medi facials",
+          "Skin polishing",
+          "Rejuvenation basics"
+        ]
+      },
+      {
+        "title": "Consultation",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Case taking",
+          "Skin assessment",
+          "Treatment planning"
+        ]
+      },
+      {
+        "title": "Clinic Basics",
+        "image": "/uploads/courses/online-certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Equipment knowledge",
+          "Sterilization",
+          "Setup basics"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CERTIFICATE COURSE IN COSMETOLOGY",
+    "duration": "3 Months",
+    "mode": "Hybrid (Online + Hands-on)",
+    "fee": "₹55,000 + Taxes",
+    "eligibleShort": "MBBS / BDS / AYUSH / Beginners",
+    "whoCanApply": "MBBS / BDS Doctors, AYUSH Doctors, Beginners",
+    "cardImage": "/uploads/courses/certificate-cosmetology-card.jpg",
+    "curriculumTopics": [
+      {
+        "title": "Skin & Hair Science",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Skin anatomy and physiology",
+          "Skin types and analysis",
+          "Hair anatomy and physiology",
+          "Hair growth cycle",
+          "Disorders"
+        ]
+      },
+      {
+        "title": "Aesthetic Skin Science",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Acne",
+          "Pigmentation",
+          "Melasma",
+          "Dark circles",
+          "Sensitive skin"
+        ]
+      },
+      {
+        "title": "Chemical Peels",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Superficial, medium, deep peels",
+          "Indications",
+          "Contraindications",
+          "Protocols"
+        ]
+      },
+      {
+        "title": "PRP / GFC",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Preparation",
+          "Indications",
+          "Hair and skin protocols"
+        ]
+      },
+      {
+        "title": "Procedures",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Medi facials",
+          "Skin polishing",
+          "Rejuvenation"
+        ]
+      },
+      {
+        "title": "Consultation",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Patient assessment",
+          "Treatment planning"
+        ]
+      },
+      {
+        "title": "Clinic Setup",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Equipment",
+          "Hygiene",
+          "Sterilization"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/certificate-cosmetology-card.jpg",
+        "subTopics": [
+          "Chemical peels",
+          "PRP",
+          "Basic procedures"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "PG DIPLOMA IN FACIAL AESTHETICS",
+    "duration": "4 Months",
+    "mode": "Online / Offline",
+    "fee": "Online: ₹25,000 + Taxes | Offline: ₹65,000 + Taxes",
+    "eligibleShort": "MBBS / BDS / Practitioners",
+    "whoCanApply": "MBBS / BDS Doctors, Practitioners",
+    "cardImage": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+    "curriculumTopics": [
+      {
+        "title": "Facial Anatomy",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Detailed anatomy",
+          "Danger zones",
+          "Aging process"
+        ]
+      },
+      {
+        "title": "Botox",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Mechanism",
+          "Indications",
+          "Dilution and dosage",
+          "Injection techniques",
+          "Upper face Botox",
+          "Complications"
+        ]
+      },
+      {
+        "title": "Dermal Fillers",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Types",
+          "Rheology",
+          "Techniques",
+          "Lips",
+          "Tear trough",
+          "Cheeks",
+          "Jawline",
+          "Complications"
+        ]
+      },
+      {
+        "title": "Threads",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "PDO, cog, mono",
+          "Techniques",
+          "Indications",
+          "Complications"
+        ]
+      },
+      {
+        "title": "PRP / GFC / Mesotherapy",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Protocols",
+          "Indications"
+        ]
+      },
+      {
+        "title": "Chemical Peels (Advanced)",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Selection",
+          "Protocols"
+        ]
+      },
+      {
+        "title": "Lasers",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Basics",
+          "Types",
+          "Safety"
+        ]
+      },
+      {
+        "title": "Acne & Scars",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Classification",
+          "Treatment"
+        ]
+      },
+      {
+        "title": "Consultation",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Assessment",
+          "Planning"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/pg-diploma-facial-aesthetics-card.webp",
+        "subTopics": [
+          "Botox",
+          "Fillers",
+          "Threads",
+          "Live patients"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "FELLOWSHIP IN FACIAL AESTHETICS",
+    "duration": "6 Months",
+    "mode": "Online / Offline",
+    "fee": "Online: ₹35,000 + Taxes | Offline: ₹80,000 + GST",
+    "eligibleShort": "MBBS / BDS / AYUSH / Practitioners",
+    "whoCanApply": "MBBS / BDS / AYUSH Doctors, Practitioners",
+    "cardImage": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+    "curriculumTopics": [
+      {
+        "title": "Skin & Hair",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Introduction to Aesthetic Medicine",
+          "Skin Anatomy & Physiology",
+          "Skin Analysis",
+          "Skin Types",
+          "Hair Anatomy",
+          "Hair Cycle"
+        ]
+      },
+      {
+        "title": "Chemical Peels",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Definition",
+          "Principles of Chemical Peels",
+          "Introduction to Peels",
+          "Patient Skin Evaluation",
+          "Indications/ Contraindications of Peels",
+          "Different Types of Peels",
+          "Glycolics/AHA/ Fruit Peels/ Jessner's/ TCA/Phenol/ Retinoic Acid/ Combinations",
+          "Retinol Peels",
+          "Obagi Peels",
+          "Sequential Peels",
+          "Side Effects / Results/ Skin Regime"
+        ]
+      },
+      {
+        "title": "Skin Rejuvenation Treatments",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Dermaplaning",
+          "Microdermabrasion",
+          "Hydra Facial",
+          "Patient Selection",
+          "Procedures"
+        ]
+      },
+      {
+        "title": "Skin Treatments",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Acne Treatment",
+          "Blood and Blood Derivatives",
+          "Hyper Pigmentation",
+          "Anti-Aging Treatments",
+          "Scars and Stretch Marks Treatments",
+          "Melasma",
+          "Oxygeneo Treatments",
+          "High Frequency Devices"
+        ]
+      },
+      {
+        "title": "Hair Treatment (Trichology)",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Hair Transplant Theory ( Basic )",
+          "Hair Treatments",
+          "Mesotherapy for Hairs",
+          "Medications for Hair Loss",
+          "Hair Growth Treatments PRP/GFC",
+          "General Hair Problems and Scalp Treatment",
+          "Oxygeneo Treatments",
+          "Alopecia Management"
+        ]
+      },
+      {
+        "title": "Mesotherapy",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Introduction to Mesotherapy",
+          "Products in Mesotherapy",
+          "Mesotherapy Techniques",
+          "Under-eye Mesotherapy",
+          "Double Chin Mesotherapy",
+          "Hairloss Mesotherapy",
+          "Stem Cell Therapy"
+        ]
+      },
+      {
+        "title": "Lasers",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Lasers Introduction",
+          "Laser Physics",
+          "Types of Lasers",
+          "Laser Hair Removal",
+          "Intense Pulsed Light (IPL)",
+          "Carbon Peel / Hollywood Facial / Laser Toning",
+          "Tattoo Removal",
+          "Laser Techniques"
+        ]
+      },
+      {
+        "title": "Advance Lasers",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Q switch ND-yag Lasers",
+          "PICO Lasers",
+          "Laser Safety / Complications"
+        ]
+      },
+      {
+        "title": "Electro Cautery",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Skin Tag Removal",
+          "Wart Removal",
+          "Facials Scars",
+          "Mole Removal"
+        ]
+      },
+      {
+        "title": "Body & Skin Contouring",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Radio Frequency",
+          "Fat / Lipolytic Treatment",
+          "HIFU",
+          "Stretch Mark Treatments",
+          "Anti Cellulite Treatment",
+          "Neck Rejuvenation"
+        ]
+      },
+      {
+        "title": "Blood & Blood Derivatives",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Introduction to PRP",
+          "Indications of PRP",
+          "Processing / Centrifugation Technique",
+          "PRP for Skin and Hair",
+          "Injectable Techniques of PRP",
+          "Micro Needling/MNRF",
+          "Derma Pen",
+          "Derma Roller"
+        ]
+      },
+      {
+        "title": "Facial Injectables",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "BTX ( Botulinum Toxin )",
+          "Anatomy of Face",
+          "Introduction of the Product",
+          "Patient Selection",
+          "Indication of Upper Face, Middle and Lower Face",
+          "Appropriate Dose and Dilution",
+          "BTX Indication",
+          "Micro BTX",
+          "Safety and Contraindications",
+          "Side Effects"
+        ]
+      },
+      {
+        "title": "Dermal Fillers",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Introduction to Dermal Fillers",
+          "Types of Dermal Fillers",
+          "Patient Selection",
+          "Nasolabial Folds/Marionette Lines",
+          "Chin Augmentation",
+          "Under Eyes (Tear Trough)",
+          "Side Effects and Complications"
+        ]
+      },
+      {
+        "title": "Facial Threads",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Introduction",
+          "Patient Selection",
+          "Techniques",
+          "Threads for Acne Scars",
+          "Threads for Hair-loss",
+          "Mono Thread Lift",
+          "Side Effects"
+        ]
+      },
+      {
+        "title": "Clinic Setup",
+        "image": "/uploads/courses/fellowship-facial-aesthetics-card.png",
+        "subTopics": [
+          "Setting up Cosmetic Clinic",
+          "Marketing",
+          "Job opportunities",
+          "Medico-Legal Aspects of Clinical Cosmetology",
+          "Student will be guided on how to start their Clinic setup",
+          "Buying right equipments, instruments and finding cost effective distributors / vendors"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MASTER COURSE IN BLEPHAROPLASTY",
+    "duration": "2 Days",
+    "mode": "Offline",
+    "fee": "₹75,000 + GST",
+    "eligibleShort": "MBBS / BDS / Surgeons",
+    "whoCanApply": "MBBS / BDS Doctors, Surgeons, Practitioners",
+    "cardImage": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+    "curriculumTopics": [
+      {
+        "title": "Basic Concepts",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Eyelid anatomy",
+          "Ageing changes of eyelids",
+          "Indications for blepharoplasty",
+          "Patient selection and evaluation"
+        ]
+      },
+      {
+        "title": "Pre-operative Planning",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Clinical examination",
+          "Marking techniques",
+          "Photography and documentation",
+          "Consent and counselling"
+        ]
+      },
+      {
+        "title": "Surgical Techniques",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Upper eyelid blepharoplasty",
+          "Lower eyelid blepharoplasty",
+          "Skin excision techniques",
+          "Fat pad management",
+          "Suturing techniques"
+        ]
+      },
+      {
+        "title": "Intra-operative Considerations",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Step-by-step surgical protocol",
+          "Instrument selection",
+          "Aseptic precautions"
+        ]
+      },
+      {
+        "title": "Post-operative Care",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Dressing and care",
+          "Medications",
+          "Follow-up protocol"
+        ]
+      },
+      {
+        "title": "Complications and Management",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Overcorrection / undercorrection",
+          "Hematoma",
+          "Infection",
+          "Lid malposition",
+          "Scar management"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/master-course-blepharoplasty-card.jpg",
+        "subTopics": [
+          "Live surgical demonstration",
+          "Assisted participation",
+          "Step-by-step supervised training"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MASTER COURSE IN FAT GRAFTING",
+    "duration": "1 Day",
+    "mode": "Offline",
+    "fee": "USD 900",
+    "eligibleShort": "MBBS / BDS / Surgeons",
+    "whoCanApply": "MBBS / BDS Doctors, Practitioners, Surgeons",
+    "cardImage": "/uploads/courses/master-course-fat-grafting-card.jpg",
+    "curriculumTopics": [
+      {
+        "title": "Basic Concepts",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Principles of fat grafting",
+          "Indications in facial aesthetics",
+          "Donor site selection"
+        ]
+      },
+      {
+        "title": "Fat Harvesting",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Techniques of harvesting",
+          "Instruments and cannulas",
+          "Tumescent infiltration"
+        ]
+      },
+      {
+        "title": "Fat Processing",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Centrifugation",
+          "Filtration techniques",
+          "Preparation of graft"
+        ]
+      },
+      {
+        "title": "Injection Techniques",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Layer-wise injection",
+          "Volume assessment",
+          "Facial areas (cheeks, under-eye, jawline)"
+        ]
+      },
+      {
+        "title": "Applications",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Facial rejuvenation",
+          "Volume restoration",
+          "Contour correction"
+        ]
+      },
+      {
+        "title": "Post-procedure Care",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Patient instructions",
+          "Follow-up protocol"
+        ]
+      },
+      {
+        "title": "Complications and Management",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Fat resorption",
+          "Irregularities",
+          "Infection",
+          "Overcorrection"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/master-course-fat-grafting-card.jpg",
+        "subTopics": [
+          "Live case demonstration",
+          "Fat harvesting and injection practice",
+          "Supervised clinical exposure"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MASTER COURSE IN HAIR TRANSPLANT",
+    "duration": "3 Days",
+    "mode": "Offline",
+    "fee": "₹75,000 + Taxes",
+    "eligibleShort": "MBBS / BDS / Practitioners",
+    "whoCanApply": "MBBS / BDS Doctors, Practitioners",
+    "cardImage": "/uploads/courses/master-course-hair-transplant-card.png",
+    "curriculumTopics": [
+      {
+        "title": "Basic Concepts",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Hair anatomy and physiology",
+          "Hair growth cycle",
+          "Causes of hair loss"
+        ]
+      },
+      {
+        "title": "Patient Assessment",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Donor area evaluation",
+          "Recipient area planning",
+          "Hairline design principles"
+        ]
+      },
+      {
+        "title": "FUE Technique",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Principles of FUE",
+          "Punch selection",
+          "Extraction techniques"
+        ]
+      },
+      {
+        "title": "Graft Handling",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Graft extraction",
+          "Graft preservation",
+          "Sorting and counting"
+        ]
+      },
+      {
+        "title": "Implantation Techniques",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Slit creation",
+          "Direction and angulation",
+          "Density planning"
+        ]
+      },
+      {
+        "title": "Hairline Design",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Natural hairline principles",
+          "Aesthetic considerations"
+        ]
+      },
+      {
+        "title": "Advanced Concepts",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "High-density implantation",
+          "Difficult case management",
+          "Revision cases"
+        ]
+      },
+      {
+        "title": "Post-operative Care",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Patient instructions",
+          "Follow-up",
+          "Maintenance"
+        ]
+      },
+      {
+        "title": "Complications and Management",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Poor graft survival",
+          "Infection",
+          "Shock loss",
+          "Uneven density"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/master-course-hair-transplant-card.png",
+        "subTopics": [
+          "Live procedure exposure",
+          "Extraction practice",
+          "Implantation practice"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "MASTER COURSE IN DIMPLOPLASTY",
+    "duration": "1 Day",
+    "mode": "Offline",
+    "fee": "₹40,000 + 18% GST",
+    "eligibleShort": "MBBS / BDS / Practitioners",
+    "whoCanApply": "MBBS / BDS Doctors, Practitioners",
+    "cardImage": "/uploads/courses/master-course-dimploplasty-card.jpg",
+    "curriculumTopics": [
+      {
+        "title": "Basic Concepts",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Facial anatomy relevant to dimples",
+          "Indications and patient selection"
+        ]
+      },
+      {
+        "title": "Pre-operative Planning",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Marking techniques",
+          "Facial symmetry assessment"
+        ]
+      },
+      {
+        "title": "Surgical Technique",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Step-by-step procedure",
+          "Suture placement",
+          "Technique variations"
+        ]
+      },
+      {
+        "title": "Post-operative Care",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Healing process",
+          "Follow-up"
+        ]
+      },
+      {
+        "title": "Complications and Management",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Asymmetry",
+          "Infection",
+          "Loss of dimple"
+        ]
+      },
+      {
+        "title": "Hands-on Training",
+        "image": "/uploads/courses/master-course-dimploplasty-card.jpg",
+        "subTopics": [
+          "Live demonstration",
+          "Supervised practice"
+        ]
+      }
+    ]
+  },
+  {
     "title": "SKIN THERAPIST SIGNATURE SERIES",
     "duration": "1 Month + 1 Week Practical",
     "mode": "Online / Offline",
-    "fee": "₹25,000 - ₹55,000 + Taxes",
-    "eligibleShort": "Therapists , Nurses",
-    "whoCanApply": "Therapists, Nurses, Salon Professionals, Beginners",
+    "fee": "Online: ₹25,000 + Taxes | Offline: ₹55,000 + Taxes",
+    "eligibleShort": "Therapists / Nurses / Salon Professionals",
+    "whoCanApply": "Therapists, Nurses, Salon Professionals, Beginners, Anyone Passionate About Aesthetics & Skin Care",
     "cardImage": "/uploads/courses/skin-therapist-signature-series-card.jpg",
     "curriculumTopics": [
       {
-        "title": "Skin & hair anatomy",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Skin & Hair Anatomy and Physiology",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Structure of skin: Epidermis, Dermis, Subcutaneous, Hair Follicle, Sebaceous Gland, etc.",
+          "Functions of Skin",
+          "Characteristics, Types & Conditions",
+          "Aging Process & Environmental Impact",
+          "Hair Structure, Scalp Anatomy & Hair Physiology",
+          "Lymphatic System & Facial Muscles",
+          "pH Balance"
+        ]
       },
       {
-        "title": "Safety & hygiene",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Safety, Hygiene & Infection Control",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Workplace Hygiene & Safety Standards",
+          "PPE Usage: Masks, Gloves, Sanitizers",
+          "Sterilization & Waste Management",
+          "First Aid & Emergency Preparedness",
+          "Risk & Hazard Identification"
+        ]
       },
       {
-        "title": "Facial techniques",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Skin Care Techniques & Basic Cosmetology",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Cleansing, Toning, Moisturizing (CTM)",
+          "Facial Procedures & Product Selection",
+          "Contraindications in Facial & Bleach",
+          "Client Counseling & Personal Hygiene for Therapists"
+        ]
       },
       {
-        "title": "Chemical peels",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Practical Skills",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Facial Massage Techniques"
+        ]
       },
       {
-        "title": "Advanced aesthetic treatments",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Electrotherapy & Devices",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "High Frequency, Galvanic, Ultrasonic",
+          "Equipment Handling"
+        ]
       },
       {
-        "title": "Electrotherapy devices",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Chemical Peels",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Introduction to Peels: Purpose, Depth, Types",
+          "Organic Peels: Enzyme Peels (Black Olive, Pumpkin, Manuka Honey), Fruit Acid Peels, Herbal Peels",
+          "Chemical Peels: AHAs: Glycolics, Lactic, Mandelic; BHAs: Salicylic; TCA, Jessner’s Peel, Retinol-based Peels, Combination Peels",
+          "Indications: Acne, Pigmentation, Fine Lines, Wrinkles, Open Pores, Brightening, Party Peels",
+          "Pre-Peel Preparation: Consultation, Skin Priming, Sun Protection",
+          "Peel Procedure Protocol: Cleansing, Degreasing, Application, Neutralization, Monitoring",
+          "Contraindications, Complications & Management",
+          "Hands-on Training: Application, Patch Test, Complication Management"
+        ]
       },
       {
-        "title": "Hair & scalp treatments",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Advanced Aesthetic Treatments",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Hydrafacial & BB Glow",
+          "Skin Lightening & Brightening",
+          "Laser Hair Reduction (Machine Handling)",
+          "Photofacial (IPL)",
+          "LED Therapies",
+          "Mesotherapy",
+          "Anti-Aging Treatments"
+        ]
       },
       {
-        "title": "Body contouring",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Wart & Mole Removal",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Use of Mole Pen & Electrocautery"
+        ]
       },
       {
-        "title": "Client management",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "MediFacial Treatments & Packs",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Basic Facials, Snail Facial, Korean Glass Facial, Specialized Masks & Packs"
+        ]
       },
       {
-        "title": "Business & marketing",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Hair & Scalp Aesthetics",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Scalp Examination & Analysis",
+          "Hair Conditions & Treatments",
+          "Mesotherapy for Hair",
+          "LLLT (Low-Level Laser Therapy)",
+          "Hair Product Selection & Contraindications"
+        ]
       },
       {
-        "title": "Hands-on training",
-        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg"
+        "title": "Body sculpting and shaping",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "MNRF",
+          "HIFU",
+          "Cryolipolysis"
+        ]
+      },
+      {
+        "title": "Client Management & Professional Ethics",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Client Consultation & Record Keeping",
+          "Privacy, Modesty & Ethical Practices",
+          "Managing Expectations & Satisfaction",
+          "Confidential Documentation"
+        ]
+      },
+      {
+        "title": "Soft Skills & Career Orientation",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Professional Behavior & Appearance",
+          "Communication & Client Handling",
+          "Difficult Client Management",
+          "Career Opportunities & Industry Growth",
+          "Follow-Up Calls, Post-Treatment Calls"
+        ]
+      },
+      {
+        "title": "Business & Career Development",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Marketing Your Practice",
+          "Client Acquisition Strategies",
+          "Legal & Ethical Guidelines"
+        ]
+      },
+      {
+        "title": "Practical Training & Assessments",
+        "image": "/uploads/courses/skin-therapist-signature-series-card.jpg",
+        "subTopics": [
+          "Live Demonstrations",
+          "Hands-on Practical Sessions",
+          "Internal Assessments",
+          "Final Viva & Certification"
+        ]
       }
     ]
   }

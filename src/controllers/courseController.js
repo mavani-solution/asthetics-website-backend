@@ -94,7 +94,7 @@ const seedCoursesData = async (req, res) => {
 
         // Optional: Assuming we want to clear out existing courses before seeding
         // If you prefer not to delete, comment out the following line
-        // await Course.deleteMany();
+        await Course.deleteMany();
 
         const data = await Course.insertMany(jsonData);
 

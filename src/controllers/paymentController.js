@@ -117,41 +117,100 @@ const initiatePayment = async (req, res) => {
 const handleCallback = async (req, res) => {
     try {
         // Data can come in body (POST) or query (GET)
-        const responseData = { ...req.query, ...req.body };
-        console.log('Received Callback from ICICI:', responseData);
+        let responseData = { ...req.query, ...req.body };
+        console.log('Received Callback from ICICI:', JSON.stringify(responseData, null, 2));
+
+        // 0. Handle potential nested/encoded response data
+        const nestedData = responseData.responseData || responseData.ResponseData;
+        if (nestedData && typeof nestedData === 'string') {
+            try {
+                if (nestedData.trim().startsWith('{')) {
+                    responseData = { ...responseData, ...JSON.parse(nestedData) };
+                } else {
+                    const params = new URLSearchParams(nestedData);
+                    for (const [key, val] of params.entries()) {
+                        responseData[key] = val;
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not parse nested responseData:', e.message);
+            }
+        }
 
         const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
 
-        // If no transaction data is present, the user likely navigated here directly or clicked 'back' without data
-        if (!responseData || !responseData.merchantTxnNo) {
-            console.warn('Empty or invalid callback received');
+        // Helper for case-insensitive field access
+        const getVal = (obj, key) => {
+            const foundKey = Object.keys(obj).find(k => k.toLowerCase() === key.toLowerCase());
+            return foundKey ? obj[foundKey] : undefined;
+        };
+
+        const merchantTxnNo = getVal(responseData, 'merchantTxnNo');
+
+        // If no transaction data is present, we can't continue
+        if (!merchantTxnNo) {
+            console.warn('Empty or invalid callback received (no merchantTxnNo)');
             return res.redirect(`${frontendUrl}/payment-status?status=Cancelled`);
         }
 
-        // 1. Verify Hash
+        // 1. Verify Hash (Optional check)
         const isHashValid = verifyResponseHash(responseData, process.env.ICICI_SECRET_KEY);
-
         if (!isHashValid) {
-            console.warn('Invalid Secure Hash in Callback!');
+            console.warn('Invalid Secure Hash in Callback! Proceeding with caution...');
         }
 
         // 2. Find Payment Record
-        const payment = await Payment.findOne({ merchantTxnNo: responseData.merchantTxnNo });
+        const payment = await Payment.findOne({ merchantTxnNo });
         if (!payment) {
-            console.error('Payment record not found for txn:', responseData.merchantTxnNo);
+            console.error('Payment record not found for txn:', merchantTxnNo);
             return res.redirect(`${frontendUrl}/payment-status?status=Error&message=TransactionNotFound`);
         }
 
-        // 3. Update Status
-        if (responseData.responseCode === '0' || responseData.responseCode === '00') {
-            payment.status = 'Success';
-        } else {
-            // Handle different failure codes (like 'E000' for user cancel)
-            payment.status = 'Failed';
-            console.log(`Payment failed with code: ${responseData.responseCode}`);
+        // 3. Update Status (Robust Check)
+        const successSignals = ['0', '00', '000', '0000', 'SUCCESS', 'PROCCED', 'PROCESSED', 'COMPLETED'];
+
+        const responseCode = String(getVal(responseData, 'responseCode') || getVal(responseData, 'respCode') || '');
+        const statusVal = String(getVal(responseData, 'status') || getVal(responseData, 'respMsg') || getVal(responseData, 'respDescription') || '').toUpperCase();
+
+        let isSuccess = successSignals.includes(responseCode) ||
+            successSignals.includes(statusVal) ||
+            statusVal.includes('SUCCESS') ||
+            statusVal.includes('PROCCED') ||
+            statusVal.includes('PROCESSED');
+
+        // Fallback: Global search in all values
+        if (!isSuccess) {
+            isSuccess = Object.values(responseData).some(val =>
+                typeof val === 'string' && successSignals.includes(val.toUpperCase())
+            );
         }
 
-        payment.gatewayResponse = { ...payment.gatewayResponse, callback: responseData };
+        if (isSuccess) {
+            payment.status = 'Success';
+            console.log(`Payment SUCCESS confirmed for ${merchantTxnNo}`);
+        } else {
+            payment.status = 'Failed';
+            console.warn(`Payment marked FAILED for ${merchantTxnNo}. Code: ${responseCode}, Status: ${statusVal}`);
+        }
+
+        // 4. Map Gateway Fields for Dashboard UI
+        const bankRef = getVal(responseData, 'paymentID') ||
+            getVal(responseData, 'pgTxnNo') ||
+            getVal(responseData, 'bankRefNo') ||
+            getVal(responseData, 'txnID') ||
+            getVal(responseData, 'rrn');
+
+        const pMode = getVal(responseData, 'paymentMode') ||
+            getVal(responseData, 'payMode') ||
+            'ONLINE_DIGITAL';
+
+        payment.gatewayResponse = {
+            ...payment.gatewayResponse,
+            paymentId: bankRef,
+            paymentMode: pMode,
+            callback: responseData,
+            hashVerified: isHashValid
+        };
         await payment.save();
 
         // 4. Redirect back to frontend

@@ -8,7 +8,11 @@ const CurriculumTopicSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: [true, 'Please add an image path or URL for the topic']
+        required: false
+    },
+    subTopics: {
+        type: [String],
+        default: []
     }
 });
 

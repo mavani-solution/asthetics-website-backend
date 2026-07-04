@@ -3,17 +3,12 @@ const mongoose = require('mongoose');
 const TestimonialSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Please add a name'],
-        trim: true
-    },
-    designation: {
-        type: String,
-        required: [true, 'Please add a designation'],
+        required: false,
         trim: true
     },
     content: {
         type: String,
-        required: [true, 'Please add testimonial content']
+        required: false
     },
     image: {
         type: String,
@@ -36,16 +31,21 @@ const TestimonialSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// XOR Validation: Ensure exactly one of image or videoUrl is provided based on type
 TestimonialSchema.pre('validate', function () {
-    if (this.type === 'image' && !this.image) {
-        this.invalidate('image', 'Image is required for image testimonials.', this.image);
+    if (this.type === 'image') {
+        if (!this.name) {
+            this.invalidate('name', 'Name is required for image testimonials.', this.name);
+        }
+        if (!this.image) {
+            this.invalidate('image', 'Image is required for image testimonials.', this.image);
+        }
+        if (!this.content) {
+            this.invalidate('content', 'Content is required for image testimonials.', this.content);
+        }
     }
     if (this.type === 'video' && !this.videoUrl) {
         this.invalidate('videoUrl', 'Video URL is required for video testimonials.', this.videoUrl);
     }
-
-    // Strict XOR: prevent both
     if (this.image && this.videoUrl) {
         this.invalidate('type', 'A testimonial can only have either an image OR a video URL, not both.', this.type);
     }
